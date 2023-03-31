@@ -3,6 +3,7 @@ from rgb_to_yiq import *
 from yiq_to_rgb import *
 from negativo import *
 from filtro_media import *
+from filtro_mediana import *
 
 opcao_menu = 1
 
@@ -44,7 +45,9 @@ while opcao_menu != 0:
         exibir_imagem(img_filtro)
 
     elif opcao_menu == 5:
-        print("Em desenvolvimento")
+        n = int( input("Digite o valor de n: ") )
+        img_filtro = filtro_mediana(img, n)
+        exibir_imagem(img_filtro)
 
     elif opcao_menu == 6:
         print("Em desenvolvimento")
