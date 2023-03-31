@@ -4,6 +4,9 @@ from yiq_to_rgb import *
 from negativo import *
 from filtro_media import *
 from filtro_mediana import *
+from convolucao import *
+
+import numpy as np
 
 opcao_menu = 1
 
@@ -62,7 +65,13 @@ while opcao_menu != 0:
         print("Em desenvolvimento")
 
     elif opcao_menu == 10:
-        print("Em desenvolvimento")
+        mascara = input("Insira a Mascara: ")
+        #mascara = np.matrix('1 1 0; 1 0 1; 1 1 1') #teste
+        
+        offset = int( input("Insira o Offset: ") )
+        #offset = 2
+        img_conv = convolucao(img, mascara, offset)
+        exibir_imagem(img_conv)
 
     elif opcao_menu == 0:
         print("Saindo...")
