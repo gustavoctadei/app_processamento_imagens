@@ -6,8 +6,6 @@ from filtro_media import *
 from filtro_mediana import *
 from convolucao import *
 
-import numpy as np
-
 opcao_menu = 1
 
 path_img = input("Digite o Caminho da Imagem: ")
@@ -26,6 +24,7 @@ while opcao_menu != 0:
     print("8 - Controle de Contraste Adaptativo")
     print("9 - Gradiente de Sobel")
     print("10 - Convolucao Imagem x Mascara")
+    print("")
     print("0 - Sair")
     opcao_menu = int( input("Digite a sua opção: ") )
 
@@ -65,12 +64,10 @@ while opcao_menu != 0:
         print("Em desenvolvimento")
 
     elif opcao_menu == 10:
-        mascara = input("Insira a Mascara: ")
-        #mascara = np.matrix('1 1 0; 1 0 1; 1 1 1') #teste
-        
+        input_mascara = input("Insira a Mascara: ")
+        #input_mascara = "1 1 0; 1 0 1; 1 1 1" # Para teste
         offset = int( input("Insira o Offset: ") )
-        #offset = 2
-        img_conv = convolucao(img, mascara, offset)
+        img_conv = convolucao(img, input_mascara, offset)
         exibir_imagem(img_conv)
 
     elif opcao_menu == 0:

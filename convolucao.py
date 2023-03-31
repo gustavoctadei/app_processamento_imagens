@@ -1,8 +1,11 @@
 import numpy as np
 
-def convolucao(img, mascara, offset):
+def convolucao(img, input_mascara, offset):
     altura, largura, canais = img.shape
+    
+    mascara = np.matrix(input_mascara)
     lin_mascara, col_mascara = mascara.shape
+    
     img_conv = np.zeros((altura, largura, canais), np.uint8)
     
     for i in range(lin_mascara//2, altura - lin_mascara//2):
