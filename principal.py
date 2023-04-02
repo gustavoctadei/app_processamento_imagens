@@ -5,10 +5,15 @@ from negativo import *
 from filtro_media import *
 from filtro_mediana import *
 from convolucao import *
+from expansao_histograma import *
+from equalizacao_histograma import *
+from contraste_adaptativo import *
+from gradiente_sobel import *
+from arquivo_util import *
 
 opcao_menu = 1
 
-path_img = input("Digite o Caminho da Imagem: ")
+path_img = input("Digite o Caminho da Imagem (Ex: img/lena_color_256.tif): ")
 path_img = "img/lena_color_256.tif" # Para teste
 img = carregar_imagem(path_img)
 
@@ -29,49 +34,49 @@ while opcao_menu != 0:
     opcao_menu = int( input("Digite a sua opção: ") )
 
     if opcao_menu == 1:
-        path_img = input("Digite o Caminho da Imagem: ")
+        path_img = input("Digite o Caminho da Imagem (Ex: img/lena_color_256.tif): ")
         img = carregar_imagem(path_img)
 
     if opcao_menu == 2:
         img_yiq = rgb_to_yiq(img)
-        img_rgb = yiq_to_rgb(img_yiq)
-        exibir_imagem(img_rgb)
+        img_out = yiq_to_rgb(img_yiq)
 
     elif opcao_menu == 3:
-        img_neg = negativo(img)
-        exibir_imagem(img_neg)
+        img_out = negativo(img)
 
     elif opcao_menu == 4:
         n = int( input("Digite o valor de n: ") )
-        img_filtro = filtro_media(img, n)
-        exibir_imagem(img_filtro)
+        img_out = filtro_media(img, n)
 
     elif opcao_menu == 5:
         n = int( input("Digite o valor de n: ") )
-        img_filtro = filtro_mediana(img, n)
-        exibir_imagem(img_filtro)
+        img_out = filtro_mediana(img, n)
 
     elif opcao_menu == 6:
-        print("Em desenvolvimento")
+        img_out = expansao_histograma(img)
 
     elif opcao_menu == 7:
-        print("Em desenvolvimento")
+        img_out = equalizacao_histograma(img)
 
     elif opcao_menu == 8:
-        print("Em desenvolvimento")
+        c = int( input("Digite o valor de c: ") )
+        n = int( input("Digite o valor de n: ") )
+        img_out = contraste_adaptativo(img, c, n)
 
     elif opcao_menu == 9:
-        print("Em desenvolvimento")
+        img_out = gradiente_sobel(img)
 
     elif opcao_menu == 10:
-        input_mascara = input("Insira a Mascara: ")
-        #input_mascara = "1 1 0; 1 0 1; 1 1 1" # Para teste
+        input_mascara = ler_mascara_de_arquivo_texto()
         offset = int( input("Insira o Offset: ") )
-        img_conv = convolucao(img, input_mascara, offset)
-        exibir_imagem(img_conv)
+        img_out = convolucao(img, input_mascara, offset)
 
     elif opcao_menu == 0:
         print("Saindo...")
 
     elif opcao_menu < 0 or opcao_menu > 5:
         print("Opcao Invalida. Favor, tente novamente")
+
+    if opcao_menu != 1 and opcao_menu != 0 and not ( opcao_menu < 0 or opcao_menu > 10 ):
+        print("Exibindo a imagem resultante...")
+        exibir_imagem(img_out)

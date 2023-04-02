@@ -6,7 +6,7 @@ def convolucao(img, input_mascara, offset):
     mascara = np.matrix(input_mascara)
     lin_mascara, col_mascara = mascara.shape
     
-    img_conv = np.zeros((altura, largura, canais), np.uint8)
+    img_out = np.zeros((altura, largura, canais), np.uint8)
     
     for i in range(lin_mascara//2, altura - lin_mascara//2):
         for j in range(col_mascara//2, largura - col_mascara//2):
@@ -17,6 +17,6 @@ def convolucao(img, input_mascara, offset):
                         if i+mi < 0 or i+mi >= altura or j+mj < 0 or j+mj >= largura:
                             continue
                         result += img[i+mi,j+mj,c] * mascara[lin_mascara//2+mi,col_mascara//2+mj]
-                img_conv[i,j,c] = np.clip(result + offset, 0, 255)
+                img_out[i,j,c] = np.clip(result + offset, 0, 255)
 
-    return img_conv
+    return img_out
