@@ -14,7 +14,6 @@ from arquivo_util import *
 opcao_menu = 1
 
 path_img = input("Digite o Caminho da Imagem (Ex: img/lena_color_256.tif): ")
-path_img = "img/lena_color_256.tif" # Para teste
 img = carregar_imagem(path_img)
 
 while opcao_menu != 0:
@@ -28,7 +27,7 @@ while opcao_menu != 0:
     print("7 - Equalizacao de Histograma")
     print("8 - Controle de Contraste Adaptativo")
     print("9 - Gradiente de Sobel")
-    print("10 - Convolucao Imagem x Mascara")
+    print("10 - Convolucao Imagem x Mascara (definida no arquivo mascara.txt)")
     print("")
     print("0 - Sair")
     opcao_menu = int( input("Digite a sua opção: ") )
